@@ -1,0 +1,12 @@
+{
+  "name": "starview_js",
+  "version": "1.0.0",
+  "description": "A simple canvas animation the shows real stars",
+  "license": "ISC",
+  "author": "Sam Rourke",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
