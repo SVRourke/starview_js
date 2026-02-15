@@ -1,31 +1,28 @@
 import { coordinates } from "./star_coordinates"
-import { coordinateOperations } from "./coordinate_operations"
-import { canvasOperations } from "./canvas_operations"
+import { CoordinateManager } from "./coordinate_operations"
+import { CanvasOperations } from "./canvas_operations"
 
 function starView() {
+  const canvas = document.getElementById("starview");
+  const ctx = canvas.getContext("2d");
+  const CanvasOps =  new CanvasOperations(ctx, canvas);
 
-    // const canvas = document.getElementById("canv");
-    // const ctx = canvas.getContext("2d");
+  let center = { x: (canvas.width / 2) +200, y: canvas.height + 100};
 
-    // let center = { x: (canvas.width / 2) + 100, y: canvas.height }
+  let theta = 0.01;
+  //let points = coordinates;
+  let points = [
+    { x: 500, y: 350 },
+    { x: (canvas.height / 2) + 10, y: (canvas.width / 2) + 10},
+  ]
+  const coords = new CoordinateManager(points);
 
-    // let points = [
-    //     { x: (canvas.width / 2), y: (canvas.height / 2) + 50 },
-    //     { x: (canvas.width / 3), y: (canvas.height / 5) + 50 },
-    //     { x: (canvas.width / 5), y: (canvas.height / 4) + 50 },
-    //     { x: (canvas.width), y: (canvas.height / 2) + 50 },
-    //     { x: (canvas.width + 400), y: (canvas.height / 2) + 50 },
+  setInterval(() => {
+    coords.rotatePoints(theta, center);
+    console.log(coords.points);
+    CanvasOps.drawFrameFromPoints(center, coords.points);
+  }, 100)
 
-    // ]
-
-
-    // let theta = 0.002;
-
-    // setInterval(function () {
-    //     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    //     points = points.map(p => translatePoint(p, center, theta))
-    //     drawFrameFromPoints();
-    // }, 10)
 
 
 

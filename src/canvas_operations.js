@@ -1,24 +1,33 @@
-// NOT WORKING
+class CanvasOperations {
+  constructor(ctx, canvas) {
+    this.ctx = ctx;
+    this.canvas = canvas
+  }
 
-const canvasOperations = {
-    drawDot: (x, y, radius = 2, color = '#d0d0d0') => {
-        ctx.beginPath();
-        ctx.arc(x, y, radius, 0, Math.PI * 2)
-        ctx.fillStyle = color;
-        ctx.fill();
-    },
-    drawFrameFromPoints: (center, coordinates) => {
-        drawDot(center.x, center.y, 8, 'blue')
-        points.forEach(p => drawDot(p.x, p.y))
+  //drawDot(x, y, radius = 2, color = '#d0d0d0') {
+  drawDot(x, y, radius = 2, color = '#FFF') {
+    this.ctx.beginPath();
+    this.ctx.arc(x, y, radius, 0, Math.PI * 2);
+    this.ctx.fillStyle = color;
+    this.ctx.fill();
+  }
 
-    },
-    clearCanvas: () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-    }
+  drawFrameFromPoints(center, coordinates) {
+    this.clearCanvas();
+    this.drawDot(center.x, center.y, 8, 'blue');
+    coordinates.forEach((p) => {
+      let x = p.x;
+      let y = p.y;
+      this.drawDot(x, y)
+    });
+  }
 
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+  }
 }
 
-export { canvasOperations }
+export { CanvasOperations }
 
 // contains potentially necessary flipping
 // const drawPoints = (points) => {
